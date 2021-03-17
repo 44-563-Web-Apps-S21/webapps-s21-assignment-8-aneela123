@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response Demo</title>
+</head>
+
+<body>
+    <div class="intro">
+        <h1>My Advices</h1>
+        <small>Click on the button to get new advice!!!</small>
+        <div>
+            <button onclick="getAdvice()">Get an Advice</button>
+        </div>
+    </div>
+
+    <div id="quote"></div>
+    <script>
+        const getAdvice = () => {
+            fetch('http://127.0.0.1:3001').then(
+                (res) => {
+                    console.log(res)
+                    return res.text()
+                }
+            ).then(data => {
+                console.log(data)
+                document.getElementById("quote").innerHTML = data
+            }).catch(err => {
+                document.getElementById("quote").innerHTML = err
+            })
+        }
+    </script>
+</body>
+</html>

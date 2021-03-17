@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Fetch Example</title>
+    <style>
+        h1 {
+            border-color: rgb(250, 107, 5);
+            text-shadow: 2px 2px 5px red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Jahna Sri Aneela Ankam computes</h2>
+    <div>
+        <input type="number" name="num1" id="num1"><br>
+
+    </div>
+    <button onclick="remoteCompute()">Remote compute</button>
+    <div id="result">
+    </div>
+    <script>
+        const remoteCompute = () => {
+            let number1 = document.getElementById("num1").value
+            let url = `http://127.0.0.1:3001?x= ${number1}`
+            fetch(url).then(
+                (response) => {
+                    console.log(response)
+                    return response.text();
+                }
+            ).then((data) => {
+                console.log(data)
+                document.getElementById("result").innerHTML = data
+            }).catch(err => {
+                document.getElementById("result").innerHTML = err
+            })
+        }
+    </script>
+</body>
+</html>
